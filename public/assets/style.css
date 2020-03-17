@@ -1,7 +1,4 @@
-/* 
-font-family: 'Roboto', sans-serif;
-font-family: 'Bonbon', cursive; 
-*/
+
 
 h1 {
   font-family: "arial", cursive;
@@ -20,16 +17,14 @@ body {
   font-family: "Roboto", sans-serif;
   min-height: 100%;
   width: 100%;
-  background-image: url("../img/big-burger-transparent.png"),
-    url("../img/3480691.jpg");
+  background-image: url("/assets//big-burger-transparent1.png"),
+    url("/assets/3480692.jpg");
   background-repeat: no-repeat;
   background-size: contain, cover;
   background-position: center;
   color: rgb(203, 203, 203);
 }
-/* ***********************
-modal css
-****************************/
+
 #noBurger .modal-title {
   margin-top: 10px;
   text-align: center;
@@ -42,19 +37,17 @@ modal css
   margin: auto;
 }
 
-/* ***********************
-end modal css
-****************************/
+
 
 .container {
-  /* background-color: rgba(128, 128, 128, 0.386); */
+ 
   background-color: #325b0b51;
   border: 4px solid transparent;
   border-radius: 30px;
 }
 
 #burgerBox h5 {
-  /* font-family: 'Bonbon', cursive;  */
+ 
   font-weight: 800;
   text-shadow: 0 0 20px black;
   color: red;

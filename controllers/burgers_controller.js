@@ -1,40 +1,50 @@
 var express = require("express");
-
 var router = express.Router();
 
-// Import the model (burger.js) to use its database functions.
+// Import the model (cat.js) to use its database functions.
 var burger = require("../models/burger.js");
 
-// Create all our routes and set up logic within those routes where required.
+// Get all burgers from database for display
 router.get("/", function(req, res) {
   burger.all(function(data) {
-    var hbsObject = {
-      burgers: data
-    };
-    console.log(hbsObject);
-    res.render("index", hbsObject);
+    console.log(data);
+    let burgersToEat = [];
+    let burgersAte = [];
+    data.forEach(function(burger) {
+      if (burger.devoured) {
+        burgersAte.push(burger);
+      } else {
+        burgersToEat.push(burger);
+      }
+    });
+    // console.log(data);
+    burgersToEat.reverse();
+    res.render("index", {
+      title: "Eat Dat Burger",
+      burgersToEat: burgersToEat,
+      burgersAte: burgersAte
+    });
+    // res.render("index", {title:"Eat Dat Burger", burgers: data}); I tried to send just the data and let handlebars sort it with if & unless,
+    // but I couldn't get the else statements I have in there to work correctly with the if and unless statements
   });
 });
 
-router.post("/api/burgers", function(req, res) {
-  burger.create([
-    "burger_name", "devour"
-  ], [
-    req.body.name, req.body.devoured
-  ], function(result) {
+// post a new burger to the database
+router.post("/api/burger", function(req, res) {
+  // console.log(req.body);
+  burger.create(["name"], [req.body.newBurger], function(result) {
     // Send back the ID of the new quote
     res.json({ id: result.insertId });
   });
 });
 
-router.put("/api/burgers/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
-
-  console.log("condition", condition);
-
-  burger.update({
-    devour: req.body.devour
-  }, condition, function(result) {
+// patch route to update burger devoured boolean
+router.patch("/api/burger", function(req, res) {
+  // console.log(req.body);
+  let condition = "id = " + req.body.ateID;
+  let cols = "devoured";
+  let vals = true;
+  burger.update(cols, vals, condition, function(result) {
     if (result.changedRows == 0) {
       // If no rows were changed, then the ID must not exist, so 404
       return res.status(404).end();
@@ -44,16 +54,10 @@ router.put("/api/burgers/:id", function(req, res) {
   });
 });
 
-router.delete("/api/burgers/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
-
-  burger.delete(condition, function(result) {
-    if (result.affectedRows == 0) {
-      // If no rows were changed, then the ID must not exist, so 404
-      return res.status(404).end();
-    } else {
-      res.status(200).end();
-    }
+// reset the burger list & database back to the original 4 burgers that were entered
+router.delete("/api/burger/", function(req, res) {
+  burger.reset(function(result) {
+    res.status(200).end();
   });
 });
 
