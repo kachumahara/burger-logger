@@ -47,4 +47,5 @@ Creating a burger logger with MySQL, Node, Express, Handlebars and a homemade OR
 
 ### Author: Kenneth Achumahara
 Github repo: https://kachumahara.github.io/burger-logger/
-Heroku link: https://obscure-inlet-01421.herokuapp.com/
+Heroku link: https://evening-caverns-32521.herokuapp.com/ 
+
