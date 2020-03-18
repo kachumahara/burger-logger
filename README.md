@@ -25,20 +25,27 @@ Creating a burger logger with MySQL, Node, Express, Handlebars and a homemade OR
 │ 
 ├── package.json
 │
+├── package-lock.json
+│
 ├── public
 │   └── assets
-│       ├── css
-│       │   └── burger_style.css
-│       └── img
-│           └── burger.png
-│   
-│
-├── server.js
+│       ├── style.css
+│       ├── app.js
+│       └── imgs (?)
 │
 └── views
-    ├── index.handlebars
-    └── layouts
-        └── main.handlebars
+│    └── layouts
+│    │      └── main.handlebars 
+│    └── index.handlebars 
+│ 
+├── gitignore
+│
+├── package-lock.json   
+│             
+├── package-lock.json    
+├── README 
+└── servers.js
+
 ```
 
 ### App gif

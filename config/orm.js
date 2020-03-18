@@ -13,6 +13,10 @@ function printQuestionMarks(num) {
   return arr.toString();
 }
 
+//`selectAll()`
+//* `insertOne()`
+//* `updateOne()`
+
 // Object for all our SQL statement functions.
 var orm = {
   all: function(tableInput, callback) {
